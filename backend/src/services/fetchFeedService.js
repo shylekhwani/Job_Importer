@@ -8,12 +8,16 @@ const sanitizeXML = (xml) => {
     .replace(/<br>/g, "<br/>");
 };
 
-export const fetchFeed = async ({ source, url }) => {
+export const fetchFeedService = async ({ source, url }) => {
   try {
     logger.info(`Fetching feed: ${url}`);
 
     const response = await axios.get(url, {
-      timeout: 15000,
+      timeout: 25000,
+      headers: {
+        "User-Agent": "JobImporterBot/1.0 (MERN Assignment)",
+        Accept: "application/xml",
+      },
     });
 
     const rawXML = response.data;

@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { fetchAllFeeds } from "./modules/fetchFeedModule.js";
+import { runImport } from "./modules/runImportModule.js";
 
 const app = express();
 
@@ -23,6 +24,12 @@ app.get("/test/feeds", async (req, res) => {
       totalFetched: f.totalFetched,
     }))
   );
+});
+
+// Test Route
+app.post("/import/run", async (req, res) => {
+  runImport();
+  res.json({ message: "Import started" });
 });
 
 app.use((err, req, res, next) => {
