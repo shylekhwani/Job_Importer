@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { fetchAllFeeds } from "./modules/fetchFeedModule.js";
 
 const app = express();
 
@@ -11,6 +12,17 @@ app.get("/health", (req, res) => {
     status: "OK",
     timestamp: new Date(),
   });
+});
+
+// Test Route
+app.get("/test/feeds", async (req, res) => {
+  const data = await fetchAllFeeds();
+  res.json(
+    data.map((f) => ({
+      sourceFile: f.sourceFile,
+      totalFetched: f.totalFetched,
+    }))
+  );
 });
 
 app.use((err, req, res, next) => {
