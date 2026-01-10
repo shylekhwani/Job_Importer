@@ -4,6 +4,7 @@ import { upsertJob } from "../services/jobService.js";
 import { incrementStatsService } from "../services/importlogService.js";
 import { logger } from "../utils/logger.js";
 import { redisConnection } from "../config/redisConfig.js";
+import { serverConfig } from "../config/serverConfig.js";
 
 export const jobWorker = new Worker(
   JOB_QUEUE_NAME,
@@ -35,7 +36,7 @@ export const jobWorker = new Worker(
   },
   {
     connection: redisConnection,
-    concurrency: 5, // ENV configurable later
+    concurrency: Number(serverConfig.workerCurrency) || 5,
   }
 );
 

@@ -9,10 +9,13 @@ export const runImport = async () => {
   const feeds = await fetchAllFeeds();
 
   for (const feed of feeds) {
-    const importLog = await createImportLogService(feed.sourceFile);
+    const importLog = await createImportLogService(
+      feed.sourceFile,
+      feed.jobs.length
+    );
 
     await enqueueJobsService(importLog._id, feed.jobs);
 
-    await markImportCompletedService(importLog._id);
+    // await markImportCompletedService(importLog._id);
   }
 };

@@ -1,8 +1,9 @@
 import { IMPORTLOG } from "../schemas/importlogSchema.js";
 
-export const createImportLogService = async (sourceFile) => {
+export const createImportLogService = async (sourceFile, totalFetched) => {
   return IMPORTLOG.create({
     sourceFile,
+    totalFetched,
   });
 };
 

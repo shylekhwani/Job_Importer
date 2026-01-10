@@ -9,4 +9,6 @@ export const serverConfig = {
   mongoUri: process.env.MONGO_URI,
 
   redisUri: process.env.REDIS_URL,
+
+  workerCurrency: process.env.WORKER_CONCURRENCY,
 };
