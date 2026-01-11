@@ -2,12 +2,17 @@ import express from "express";
 import cors from "cors";
 import { fetchAllFeeds } from "./modules/fetchFeedModule.js";
 import { runImport } from "./modules/runImportModule.js";
+import logRouter from "./routes/logRoute.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/imports", logRouter);
+
+// ----------------------------------------------------------------------------------
+// Test Route
 app.get("/health", (req, res) => {
   res.json({
     status: "OK",
@@ -31,6 +36,8 @@ app.post("/import/run", async (req, res) => {
   runImport();
   res.json({ message: "Import started" });
 });
+
+// ----------------------------------------------------------------------------------
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({

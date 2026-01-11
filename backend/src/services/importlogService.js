@@ -35,3 +35,14 @@ export const incrementStatsService = async (
 
   return IMPORTLOG.findByIdAndUpdate(importLogId, update);
 };
+
+export const getImportHistoryService = async () => {
+  try {
+    const imports = await IMPORTLOG.find().sort({ createdAt: -1 }).limit(50); // safe
+
+    return imports;
+  } catch (error) {
+    console.error("❌ Failed to fetch import history", error);
+    throw error;
+  }
+};
