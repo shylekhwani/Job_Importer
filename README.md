@@ -182,7 +182,7 @@ http://localhost:5000
 
 ### Import History Dashboard
 
-> Add screenshots here before submission
+> Screenshots
 
 Example:
 
