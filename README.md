@@ -214,7 +214,7 @@ Example:
 
 **Yash Lekhwani ( MERN Developer (Frontend-focused) )**  
 Experience: ~2.4 years  
-Backend Exposure: ~1 year
+Backend Exposure: ~1+ year
 
 ---
 
