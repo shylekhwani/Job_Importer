@@ -1,8 +1,8 @@
 import crypto from "crypto";
 
 export const normalizeJob = (rawJob, source) => {
-  const externalJobId =
-    rawJob.guid?._ || rawJob.guid || rawJob.id || rawJob.link;
+  // console.log("rawJob", rawJob);
+  const externalJobId = rawJob.id;
 
   const normalized = {
     source,

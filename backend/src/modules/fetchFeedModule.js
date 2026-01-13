@@ -21,7 +21,8 @@ export const fetchAllFeeds = async () => {
 
     // small delay to avoid rate-limiting
     await delay(1000);
+    // console.log("Jobs", normalizedJobs);
   }
-
+  // console.log("Jobs", results);
   return results;
 };

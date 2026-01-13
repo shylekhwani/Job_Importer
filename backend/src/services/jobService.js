@@ -11,7 +11,7 @@ export const upsertJob = async (jobData) => {
     },
     {
       upsert: true,
-      new: false, // allows us to detect insert vs update efficiently.
+      new: false, // allows us to detect insert vs update efficiently. returns the OLD document
     }
   );
 

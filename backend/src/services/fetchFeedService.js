@@ -24,17 +24,19 @@ export const fetchFeedService = async ({ source, url }) => {
     const cleanXML = sanitizeXML(rawXML);
     const parsed = await parseXML(cleanXML);
 
+    // console.log("Parsed XML:", parsed);
+
     /**
      * Different feeds have different structures
      * Normalize them here
      */
     let items = [];
 
-    // Jobicy feeds
+    // Jobicy feeds  // 👉 this code is REPLACING the items array.
     if (parsed?.rss?.channel?.item) {
       items = Array.isArray(parsed.rss.channel.item)
-        ? parsed.rss.channel.item
-        : [parsed.rss.channel.item];
+        ? parsed.rss.channel.item // “Point items to this array”
+        : [parsed.rss.channel.item]; // “Create a NEW array with this object inside”
     }
 
     // HigherEdJobs RSS
@@ -45,6 +47,7 @@ export const fetchFeedService = async ({ source, url }) => {
     }
 
     logger.info(`Fetched ${items.length} jobs from ${url}`);
+    // console.log("Jobs", items);
 
     return {
       source,
